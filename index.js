@@ -18,17 +18,27 @@
 
 // autenticar();
 
-const Pessoa = require('./models/Pessoa');
+const express = require('express');
+const app = express();
+app.use(express.json());
 
-(async () => {
-//    const pessoa = Pessoa.build({nome:"Fabíola Diniz"});
-//     await pessoa.save()
-//         .then(console.log('Salvo com sucesso!'))
-//         .catch(error =>{
-//             console.log(error);
-//     });
-    Pessoa.findAll().then(p=>{
-        console.log(p);
-    });
-       
-})();
+const pessoaController = require('./controllers/pessoaController')
+
+app.get('/pessoas/:id', pessoaController.getPessoa);
+
+app.post('/pessoas',(req, res)  =>{
+    res.send(req.body);
+  });
+
+app.delete('/pessoas/:id',(req, res) => {
+    res.send(req.params.id);
+  });
+
+app.put('/pessoas',(req, res) =>{
+    res.send('hello world')
+  });
+
+  app.listen(3000);
+
+// mandar req sempre é get 
+
