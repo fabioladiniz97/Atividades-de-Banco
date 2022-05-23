@@ -26,17 +26,12 @@ const pessoaController = require('./controllers/pessoaController')
 
 app.get('/pessoas/:id', pessoaController.getPessoa);
 
-app.post('/pessoas',(req, res)  =>{
-    res.send(req.body);
-  });
+app.post('/pessoas', pessoaController.addPessoa);
 
-app.delete('/pessoas/:id',(req, res) => {
-    res.send(req.params.id);
-  });
+app.delete('/pessoas/:id', pessoaController.deletePessoa);
 
-app.put('/pessoas',(req, res) =>{
-    res.send('hello world')
-  });
+app.put('/pessoas', pessoaController.atualizarPessoa);
+    
 
   app.listen(3000);
 
